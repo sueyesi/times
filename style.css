@@ -19,7 +19,7 @@ html{
     
 }
 body{
-    background: url(../images/bg.jpg) left top no-repeat;
+    background:#8fb9ab;
 }
 .container{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -41,17 +41,20 @@ body{
     justify-content: center;
     border-top: 1px solid #ebebeb;
     border-bottom: 4px double #999;
+    
 }
 .menus button{
     border: none;
     background: none;
-    margin: 5px;
+    margin: 5px 10px;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 .menus button:hover{
-    color: #dfdddd;
+    color: #8fb9ab;
 }
-.newsWrap{
-    
+.newsWrap .news:hover{
+    background:rgba(244, 208, 150, 0.25)   
 }
 .news{
     padding: 20px 0;
