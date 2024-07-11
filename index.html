@@ -13,14 +13,20 @@
     <section class="container">
         <div class="tnb">
             <span onclick="openNav()" class="mobileMenu"><i class="fa-solid fa-bars"></i></span>
+            <!--
             <span class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i>
             </span>
             <span id="searchArea" class="searchArea">
                 <input type="text" id="searchInput">
-                <button id="searchButton" onclick="searchNews()">GO</button>
+                <button id="searchButton" onclick="getNewsByKeyword()">GO</button>
             </span>  
+            -->
         </div>
-        <h1>noonaTimes</h1>        
+        <h1>noonaTimes</h1> 
+        <div id="searchArea" class="searchBox">
+            <input type="text" id="searchInput">
+            <button id="searchButton" onclick="getNewsByKeyword()">GO</button>
+        </div>         
         <section id="mySidenav" class="mySidenav">
             <div class="menus">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark"></i></a>

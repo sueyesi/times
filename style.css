@@ -35,8 +35,10 @@ body{
     text-shadow: 1px 1px 4px rgb(63, 62, 63);
 }
 .tnb{
+    width: 100%;
     display: flex;
     font-size: 1.8rem;
+    justify-content: flex-end;
 }
 .tnb span{    
     text-align: center;
@@ -66,6 +68,35 @@ input:focus {outline:none}
     color: #fff; 
     height: 40px;
 }
+.searchBox{
+     width: 80%;
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+}
+.searchBox input{
+    border: 2px solid #05c0c0;      
+    font-size:1.2rem;
+    padding: 0 20px;
+    border-radius: 20px 0 0 0; 
+    transition: 0.2s;
+    height: 50px;
+    width: calc(100% - 70px);
+    text-align: center;
+} 
+.searchBox input[type=text]:focus {
+    background: #05c0c03d;
+  }
+.searchBox button{
+    border: 0;
+    background: #05c0c0;   
+    font-size:1.1rem;
+    padding: 0 20px;
+    border-radius: 0 0 20px 0;   
+    color: #fff; 
+    height: 50px;
+    width: 70px;
+}
 .closebtn{
     display: none;
 }
@@ -92,7 +123,7 @@ input:focus {outline:none}
 .menus button:hover{
     color: #8fb9ab;
 }
- 
+
 .newsWrap .news:hover{
     background:rgba(244, 208, 150, 0.25)   
 }

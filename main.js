@@ -2,27 +2,28 @@
 const API_KEY = `6aba51ea81af491aa6793d096958527f`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");//버튼을 가져온다
-
+const searchInput = document.getElementById("searchInput");
 //console.log("eee",menus)
 menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event)));
 
 
 //뉴스를 가져오는 함수 설정
 const getLatestNews = async() =>{ 
-    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`); 
+    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
     const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`); 
     const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다
     const data = await response.json();// json파일형식
     newsList = data.articles;
     render();
-    console.log("rrr",newsList);    
+    console.log("rrr",newsList); 
+       
 };
 
 const getNewsCategory = async(event) => {
     //console.log("category");   
     const category = event.target.textContent.toLowerCase();
     console.log("category",category);
-    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`); 
+    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
     const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`); 
     const response = await fetch(url);
     const data = await response.json();
@@ -31,9 +32,35 @@ const getNewsCategory = async(event) => {
     render();
 }
 //
-const getNewsByKeyword=()=>{
-    //console.log("keyword")
+const getNewsByKeyword=async()=>{    
+    const keyword = document.getElementById("searchInput").value;
+    //console.log("keyword", keyword)
+    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`); 
+    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`); 
+    let searchValue = searchInput.value;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.articles.length === 0) {
+        alert("검색된 키워드가 없습니다."); 
+        searchInput.value = '';
+        return;        
+    }
+    if(searchValue == ''){
+        alert("키워드가 입력되지 않았습니다.");
+        return;
+    }
+    //console.log("keyword",data);
+    newsList = data.articles;
+    render();
+    searchInput.value = '';
+    
 }
+searchInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        searchButton.click();
+    }
+});
 const render =()=>{
     const newsHTML = newsList.map(news=>`
         <div class="row news">
@@ -66,13 +93,13 @@ let openNav = () =>{
 let closeNav = () =>{
     document.getElementById("mySidenav").style.width = "0";
 }
-
+/*
 let searchBtn = document.querySelector('.searchBtn');
 let searchClicked = false;
 let openSearch = () => {
     if(searchClicked === false) {
       searchClicked = true;
-      searchArea.style.width = '30%';
+      searchArea.style.width = '35%';
       searchArea.style.opacity = '1';
     } else if (searchClicked === true) {
       searchClicked = false;
@@ -81,10 +108,7 @@ let openSearch = () => {
     }
   }
   searchBtn.addEventListener("click", openSearch)
-
-  let searchNews = () => {
-    openSearch()
-  }
+*/
  
 
 getLatestNews();
