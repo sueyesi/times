@@ -72,7 +72,7 @@ let searchClicked = false;
 let openSearch = () => {
     if(searchClicked === false) {
       searchClicked = true;
-      searchArea.style.width = '35%';
+      searchArea.style.width = '30%';
       searchArea.style.opacity = '1';
     } else if (searchClicked === true) {
       searchClicked = false;
@@ -83,7 +83,7 @@ let openSearch = () => {
   searchBtn.addEventListener("click", openSearch)
 
   let searchNews = () => {
-    openSearch();
+    openSearch()
   }
  
 

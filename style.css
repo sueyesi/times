@@ -37,7 +37,6 @@ body{
 .tnb{
     display: flex;
     font-size: 1.8rem;
-    justify-content: flex-end;
 }
 .tnb span{    
     text-align: center;
