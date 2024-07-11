@@ -5,16 +5,22 @@ const menus = document.querySelectorAll(".menus button");//버튼을 가져온�
 const searchInput = document.getElementById("searchInput");
 //console.log("eee",menus)
 menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event)));
+let url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`); 
+//let url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`)
 
 
-//뉴스를 가져오는 함수 설정
-const getLatestNews = async() =>{ 
-    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
-    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`); 
+const getArticles = async()=>{
     const response = await fetch(url); // await  fetch함수가 완료될 때까지 기다려준다
     const data = await response.json();// json파일형식
     newsList = data.articles;
     render();
+}
+
+//뉴스를 가져오는 함수 설정
+const getLatestNews = async() =>{ 
+    //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${API_KEY}`); 
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines`); 
+    getArticles();
     console.log("rrr",newsList); 
        
 };
@@ -23,20 +29,17 @@ const getNewsCategory = async(event) => {
     //console.log("category");   
     const category = event.target.textContent.toLowerCase();
     console.log("category",category);
-    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
-    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`); 
-    const response = await fetch(url);
-    const data = await response.json();
+    //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&category=${category}&apiKey=${API_KEY}`); 
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`);     
     console.log("ddd",data);
-    newsList = data.articles;
-    render();
+    getArticles();
 }
 //
 const getNewsByKeyword=async()=>{    
     const keyword = document.getElementById("searchInput").value;
     //console.log("keyword", keyword)
-    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`); 
-    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`); 
+     //url = new URL( `https://newsapi.org/v2/top-headlines?country=kr&q=${keyword}&apiKey=${API_KEY}`); 
+    url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?q=${keyword}`); 
     let searchValue = searchInput.value;
 
     const response = await fetch(url);
