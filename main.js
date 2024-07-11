@@ -2,7 +2,7 @@
 const API_KEY = `6aba51ea81af491aa6793d096958527f`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");//버튼을 가져온다
-let searchBtn = document.querySelector('.searchBtn');
+
 //console.log("eee",menus)
 menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event)));
 
@@ -67,18 +67,25 @@ let closeNav = () =>{
     document.getElementById("mySidenav").style.width = "0";
 }
 
-let openSearch = () =>{
-    document.getElementById("searchArea").style.display = "flex";
-    document.getElementById("searchArea").style.opacity = "1";
-}
-let searchNews = () =>{
-    document.getElementById("searchArea").style.display = "none";
-}
+let searchBtn = document.querySelector('.searchBtn');
+let searchClicked = false;
+let openSearch = () => {
+    if(searchClicked === false) {
+      searchClicked = true;
+      searchArea.style.width = '35%';
+      searchArea.style.opacity = '1';
+    } else if (searchClicked === true) {
+      searchClicked = false;
+      searchArea.style.width = '0';
+      searchArea.style.opacity = '0';
+    }
+  }
+  searchBtn.addEventListener("click", openSearch)
 
-
+  let searchNews = () => {
+    openSearch();
+  }
  
-
-
 
 getLatestNews();
 // 삼항조건연산자 A ? B : C (A는 참이면 B 거짓이면 C를 실행)
