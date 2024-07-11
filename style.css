@@ -20,7 +20,6 @@ html{
 }
 body{
     background: url(../images/bg.jpg) left top no-repeat;
-    background-size: cover;
 }
 .container{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
