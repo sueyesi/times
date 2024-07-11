@@ -2,8 +2,10 @@
 const API_KEY = `6aba51ea81af491aa6793d096958527f`;
 let newsList = [];
 const menus = document.querySelectorAll(".menus button");//버튼을 가져온다
+let searchBtn = document.querySelector('.searchBtn');
 //console.log("eee",menus)
 menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event)));
+
 
 //뉴스를 가져오는 함수 설정
 const getLatestNews = async() =>{ 
@@ -28,7 +30,10 @@ const getNewsCategory = async(event) => {
     newsList = data.articles;
     render();
 }
-
+//
+const getNewsByKeyword=()=>{
+    //console.log("keyword")
+}
 const render =()=>{
     const newsHTML = newsList.map(news=>`
         <div class="row news">
@@ -54,7 +59,24 @@ const render =()=>{
     document.getElementById("newsBoard").innerHTML = newsHTML;
 }
 
+let openNav = () =>{
+    document.getElementById("mySidenav").style.width = "50%";  
+}
 
+let closeNav = () =>{
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+let openSearch = () =>{
+    document.getElementById("searchArea").style.display = "flex";
+    document.getElementById("searchArea").style.opacity = "1";
+}
+let searchNews = () =>{
+    document.getElementById("searchArea").style.display = "none";
+}
+
+
+ 
 
 
 
