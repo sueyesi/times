@@ -1,6 +1,10 @@
 
 const API_KEY = `6aba51ea81af491aa6793d096958527f`;
 let newsList = [];
+const menus = document.querySelectorAll(".menus button");//버튼을 가져온다
+//console.log("eee",menus)
+menus.forEach(menu=>menu.addEventListener("click",(event)=>getNewsCategory(event)));
+
 //뉴스를 가져오는 함수 설정
 const getLatestNews = async() =>{ 
     //const url = new URL( `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`); 
@@ -12,25 +16,29 @@ const getLatestNews = async() =>{
     console.log("rrr",newsList);    
 };
 
-//버튼클릭시 해당 카테고리 뉴스 호출
-document.querySelectorAll('.menus button').forEach(button => {
-    button.addEventListener('click', function() {
-        let category = this.textContent.toLowerCase(); 
-       
-        categoryNews(category);
-    });
-});
+const getNewsCategory = async(event) => {
+    //console.log("category");   
+    const category = event.target.textContent.toLowerCase();
+    console.log("category",category);
+    //const url = new URL( `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`); 
+    const url = new URL(`https://noona-times-be-5ca9402f90d9.herokuapp.com/top-headlines?category=${category}`); 
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log("ddd",data);
+    newsList = data.articles;
+    render();
+}
 
 const render =()=>{
     const newsHTML = newsList.map(news=>`
         <div class="row news">
-                <div class="col-lg-4">
+                <div class="col-lg-4 imgArea">
                     <img class="newsImgSize" src=${news.urlToImage || '../images/noImage.png'}  onError="this.src='../images/noImage.png'" />
                 </div>
                 <div  class="col-lg-8">
                     <dl>
                         <dt>${news.title}</dt>                        
-                        <dd>${news.description.length > 0 ? (news.description.length > 200 ? news.description.slice(0, 200) + '...' : news.description) : '내용없습니다'}</dd>
+                        <dd>${news.description ? (news.description.length > 200 ? news.description.slice(0, 200) + '...' : news.description) : '내용없습니다'}</dd>
                         <dd>                        
                         ${news.source ? `<span>${news.source.name}</span>` : '<span>출처가 없습니다.</span>'}
                         <span class="date">
@@ -47,10 +55,7 @@ const render =()=>{
 }
 
 
-function categoryNews(category) {
-    // 여기에 해당 카테고리에 대한 뉴스를 가져와서 표시하는 코드 작성
-    // API를 사용하여 해당 카테고리에 대한 뉴스를 가져올 수 있습니다
-}
+
 
 
 getLatestNews();
