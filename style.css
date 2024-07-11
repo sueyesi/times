@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'OKCHAN';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKCHAN.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+    font-family: 'GmarketSansMedium';
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+.container{
+
+}
+.container h1{
+    font-family: 'OKCHAN';
+    text-align: center;
+    font-size: 4.5rem;
+    padding: 20px 0;
+    text-shadow: 1px 1px 4px rgb(63, 62, 63);
+}
+.menus{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 4px double #999;
+}
+.menus button{
+    border: none;
+    background: none;
+    margin: 5px;
+}
+.menus button:hover{
+    color: #dfdddd;
+}
+.newsWrap{
+    
+}
+.news{
+    padding: 20px 0;
+    border-bottom: 1px solid #999;
+}
+.newsImgSize{
+    max-width: 100%;
+    max-height: 200px;
+}
+.noImage{
+    background: #eee;
+}
+.noImage::after{
+    content: 'IMAGE NOT AVAILABLE';
+    text-align: center;
+    border: 1px solid #999;
+}
